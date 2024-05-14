@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function Vehicle(make, model, year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    Vehicle.prototype.getInfo = function () {
+        return `${this.make} ${this.model} ${this.year}`
+    }
+
+    function Car(make, model, year, numDoors) {
+        this.numDoors = numDoors
+        this.carSpeed = function carSpeed() {
+            return year * 100 / 2024
+        }
+        Vehicle.call(this, make, model, year)
+    }
+
+    Car.prototype = Object.create(Vehicle.prototype);
+
+
+    function Bicycle(make, model, year, gearNumber) {
+        this.gearNumber = gearNumber
+        this.bicycleState = function bicycleState() {
+            return 100 - (year * 100 / 2024)
+        }
+        Vehicle.call(this, make, model, year)
+    }
+
+    Bicycle.prototype = Object.create(Vehicle.prototype);
+
+
+    const result1 = new Car("Japan", "Toyota", 2009, 4)
+    const result2 = new Bicycle("Korea", "Mazda", 2023, 10)
+    console.log(`${result1.getInfo()} ${result1.numDoors} ${result1.carSpeed().toFixed(2)} per/sec`)
+    console.log(`${result2.getInfo()} ${result2.gearNumber} ${result2.bicycleState().toFixed(2)} deterioration`)
+
+
+</script>
+</body>
+</html>
